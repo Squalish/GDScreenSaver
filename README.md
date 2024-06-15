@@ -1,5 +1,5 @@
 # GDScreenSaver
-A screensaver made in godot engine cuz I was borted alr
+A screensaver made in godot engine cuz I was bored alr
 ![image](https://github.com/Squalish/GDScreenSaver/assets/96146016/832e8eba-56ca-4433-b936-357bf30b1466)
 
 # How 2 install
