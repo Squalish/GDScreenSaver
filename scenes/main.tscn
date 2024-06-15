@@ -1,0 +1,276 @@
+[gd_scene load_steps=21 format=3 uid="uid://c3duhn2jxs8wk"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_k7fvf"]
+[ext_resource type="Shader" path="res://shaders/GodotRetro/Screen Shaders/SimpleGrain.gdshader" id="2_dlfjt"]
+[ext_resource type="Texture2D" uid="uid://ct4by77uo7y7p" path="res://textures/white.png" id="2_wt8jj"]
+[ext_resource type="Shader" path="res://shaders/GodotRetro/Screen Shaders/Aditional Shaders/Dithering.gdshader" id="4_on354"]
+
+[sub_resource type="Gradient" id="Gradient_5b1ox"]
+colors = PackedColorArray(0, 0, 0, 1, 0.254902, 0.360784, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_x0vbe"]
+gradient = SubResource("Gradient_5b1ox")
+fill_to = Vector2(1, 1)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2bp1n"]
+blend_mode = 1
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_awr3d"]
+lifetime_randomness = 0.3
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(100, 0, 1)
+gravity = Vector3(0, -200, 0)
+scale_min = 0.0
+scale_max = 2.0
+turbulence_enabled = true
+turbulence_noise_strength = 20.0
+turbulence_noise_scale = 8.211
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tv6i7"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_ui5yf"]
+font_size = 60
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1ee5d"]
+shader = ExtResource("2_dlfjt")
+shader_parameter/amount = 0.035
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ncqsj"]
+shader = ExtResource("4_on354")
+shader_parameter/SCREEN_WIDTH = 320.0
+shader_parameter/COLOR_FACTOR = 4.0
+shader_parameter/DITHERING_STRENTH = 0.005
+
+[sub_resource type="Animation" id="Animation_0uffg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control2/Control/TextureRect:texture:fill_from")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control2/Control/TextureRect:texture:fill_to")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2k0mo"]
+resource_name = "thing"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control2/Control/TextureRect:texture:fill_from")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 0), Vector2(1, 1), Vector2(0, 1), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control2/Control/TextureRect:texture:fill_to")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 1), Vector2(0, 0), Vector2(1, 0), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g7wch"]
+_data = {
+"RESET": SubResource("Animation_0uffg"),
+"thing": SubResource("Animation_2k0mo")
+}
+
+[sub_resource type="Animation" id="Animation_e1xce"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control2/Control/TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_bvq2q"]
+resource_name = "wawa"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control2/Control/TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.783523, 0.783523, 0.783523, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5ad41"]
+_data = {
+"RESET": SubResource("Animation_e1xce"),
+"wawa": SubResource("Animation_bvq2q")
+}
+
+[sub_resource type="Animation" id="Animation_a32nr"]
+resource_name = "start"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vjciq"]
+_data = {
+"start": SubResource("Animation_a32nr")
+}
+
+[node name="Main" type="Node" node_paths=PackedStringArray("time")]
+script = ExtResource("1_k7fvf")
+time = NodePath("Control2/Label")
+
+[node name="Control2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Control" type="Control" parent="Control2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control2/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_x0vbe")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Control2"]
+modulate = Color(1, 1, 1, 0.392157)
+material = SubResource("CanvasItemMaterial_2bp1n")
+position = Vector2(320, 360)
+scale = Vector2(3.215, 3.215)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_awr3d")
+texture = ExtResource("2_wt8jj")
+lifetime = 7.0
+preprocess = 10.0
+
+[node name="Label" type="Label" parent="Control2"]
+modulate = Color(1, 1, 1, 0.588235)
+material = SubResource("CanvasItemMaterial_tv6i7")
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -27.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 60
+text = "00:00:00"
+label_settings = SubResource("LabelSettings_ui5yf")
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters_behavior = 1
+
+[node name="BackBufferCopy2" type="BackBufferCopy" parent="."]
+copy_mode = 2
+rect = Rect2(0, 0, 640, 360)
+
+[node name="ColorRect" type="ColorRect" parent="BackBufferCopy2"]
+material = SubResource("ShaderMaterial_1ee5d")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+copy_mode = 2
+rect = Rect2(0, 0, 640, 360)
+
+[node name="ColorRect" type="ColorRect" parent="BackBufferCopy"]
+material = SubResource("ShaderMaterial_ncqsj")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="spin" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_g7wch")
+}
+autoplay = "thing"
+speed_scale = 0.05
+
+[node name="wawa" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5ad41")
+}
+autoplay = "wawa"
+speed_scale = 0.05
+
+[node name="start" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vjciq")
+}
+autoplay = "start"
+speed_scale = 0.25

@@ -1,0 +1,45 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Squalish's Screensaver"
+config/version="1.0"
+run/main_scene="res://scenes/main.tscn"
+config/features=PackedStringArray("4.2", "Forward Plus")
+run/max_fps=30
+run/low_processor_mode=true
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/show_image=false
+boot_splash/fullsize=false
+boot_splash/use_filter=false
+config/icon="res://icon_favicon.svg"
+config/windows_native_icon="res://icon.ico"
+
+[display]
+
+window/size/viewport_width=640
+window/size/viewport_height=360
+window/size/initial_position_type=0
+window/size/resizable=false
+window/size/always_on_top=true
+window/stretch/mode="viewport"
+window/stretch/aspect="ignore"
+
+[gui]
+
+theme/custom_font="res://ui/fonts/visitor1.ttf"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
